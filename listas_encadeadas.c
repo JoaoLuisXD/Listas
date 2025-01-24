@@ -6,10 +6,12 @@ struct lista{
 };
 typedef struct lista Lista;
 Lista * cria_lista(); // função cria uma lista vazia
-Lista * insere_lista(Lista * nova_lista, int valor);
-void imprime_lista(Lista * nova_lista);
-int lista_vazia(Lista * nova_lista);
-Lista * busca_lista(Lista * nova_lista, int valor);
+Lista * insere_lista(Lista * lista_atual, int valor);
+void imprime_lista(Lista * lista_atual);
+int lista_vazia(Lista * lista_atual);
+Lista * busca_lista(Lista * lista_atual, int valor);
+Lista * exclui_lista(Lista * lista_atual, int valor);
+void libera_lista(Lista *lista_atual);
 int main()
 {
     int n;
@@ -37,33 +39,33 @@ Lista * cria_lista()
 {
     return NULL;
 }
-Lista * insere_lista(Lista * nova_lista, int valor)
+Lista * insere_lista(Lista * lista_atual, int valor)
 {
     Lista * novo = (Lista*)malloc(sizeof(Lista));
     novo->info = valor;
-    novo->prox = nova_lista;
+    novo->prox = lista_atual;
     return novo;
 }
-void imprime_lista(Lista * nova_lista)
+void imprime_lista(Lista * lista_atual)
 {
     Lista * p; // variavel |p| para percorrer a lista
-    for(p = nova_lista; p != NULL; p = p->prox)
+    for(p = lista_atual; p != NULL; p = p->prox)
     {
         printf("Elemento: %d\n", p->info);
     }
 }
-int lista_vazia(Lista * nova_lista)
+int lista_vazia(Lista * lista_atual)
 {
-    if(nova_lista == NULL)
+    if(lista_atual == NULL)
     {
         return 1;
     }
     return 0;
 }
-Lista * busca_lista(Lista * nova_lista, int valor)
+Lista * busca_lista(Lista * lista_atual, int valor)
 {
     Lista *p;
-    for(p = nova_lista; p != NULL; p = p->prox)
+    for(p = lista_atual; p != NULL; p = p->prox)
     {
         if(p->info == valor)
         {
@@ -71,4 +73,39 @@ Lista * busca_lista(Lista * nova_lista, int valor)
         }
     }
     return NULL; // não achou o elemento
+}
+Lista * exclui_lista(Lista * lista_atual, int valor)
+{
+    Lista * lista_anterior = NULL;
+    Lista * p = lista_atual;
+    while (p != NULL && p->info != valor)
+    {
+        lista_anterior = p;
+        p = p->prox;
+    }
+    if(p == NULL)
+    {
+        return lista_atual;
+    }
+    if(lista_anterior == NULL)
+    {
+        p = p->prox;
+    }
+    else
+    {
+        lista_anterior->prox = p->prox;
+    }
+    free(p);
+    return lista_atual;
+
+}
+void libera_lista(Lista *lista_atual)
+{
+    Lista * p = lista_atual;
+    while(p != NULL)
+    {
+        Lista * temp = p->prox;
+        free(p);
+        p = temp;
+    }
 }
