@@ -12,6 +12,8 @@ int lista_vazia(Lista * lista_atual);
 Lista * busca_lista(Lista * lista_atual, int valor);
 Lista * exclui_lista(Lista * lista_atual, int valor);
 void libera_lista(Lista *lista_atual);
+Lista * maximo_lista(Lista *lista_atual);
+Lista * ordena_lista(Lista *Lista_atual);
 int main()
 {
     int n;
@@ -108,4 +110,39 @@ void libera_lista(Lista *lista_atual)
         free(p);
         p = temp;
     }
+}
+Lista * maximo_lista(Lista *lista_atual)
+{
+    Lista * maior = lista_atual;
+    
+    if(lista_atual != lista_vazia(lista_atual))
+    {
+        Lista * p = lista_atual;
+
+        while(p != NULL)
+        {
+            if(maior->info > p->info)
+            {
+                maior = p;
+            }
+            p = p->prox;
+        }
+        return maior;
+    }
+    return NULL;
+    
+}
+Lista * ordena_lista(Lista *lista_atual)
+{
+    Lista* lista_ordenada = cria_lista(); // cria uma nova lista vazia
+
+    while(lista_atual != lista_vazia(lista_atual))
+    {
+        Lista * maior = maximo_lista(lista_atual);
+
+        lista_ordenada = insere_lista(lista_ordenada, maior->info);
+
+        lista_atual = exclui_lista(lista_atual, maior->info);
+    }
+    return lista_ordenada;
 }
