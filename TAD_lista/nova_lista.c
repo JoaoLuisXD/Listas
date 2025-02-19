@@ -12,7 +12,8 @@ Plista cria_lista();
 Plista insere_lista(Plista cabeca_lista, float valor);
 Plista remove_lista (Plista cabeca_lista, float valor);
 Plista busca_lista (Plista cabeca_lista, float valor);
-
+int conta_lista(Plista cabeca_lista);
+void imprime_lista(Plista cabeca_lista);
 int main()
 {
     float n;
@@ -22,15 +23,21 @@ int main()
     primeira = insere_lista(primeira,3);
     primeira = insere_lista(primeira,4);
     primeira = insere_lista(primeira,5);
-    printf("DIGITE UM VALOR PARA PROCURAR: ");
+    imprime_lista(primeira);
+
+    printf("\n%d\n",conta_lista(primeira));
+
+    printf("\nDIGITE UM VALOR PARA PROCURAR: ");
     scanf("%f",&n);
    
-    Plista encontrou = busca_lista(primeira,3);
+    Plista encontrou = busca_lista(primeira,n);
     if(encontrou != NULL)
     {
-        printf("%f",encontrou->info);
+        printf("\n%f\n",encontrou->info);
     }
-    else printf("NAO ENCONTROU");
+    else printf("NAO ENCONTROU\n");
+
+
     return 0;
 }
 
@@ -80,4 +87,33 @@ Plista busca_lista (Plista cabeca_lista, float valor)
         }
     }
     return NULL;
+}
+Plista concatena (Plista cabeca_lista_um, Plista cabeca_lista_dois)
+{
+    Plista percorre = cabeca_lista_um;
+    while (percorre->prox != NULL)
+    {
+        percorre->prox = cabeca_lista_dois;
+    }
+    return cabeca_lista_um;
+}
+int conta_lista(Plista cabeca_lista)
+{
+    Plista percorre = cabeca_lista;
+    int cont=0;
+    while(percorre != NULL)
+    {
+        cont++;
+        percorre = percorre->prox;
+    }
+    return cont;
+}
+void imprime_lista(Plista cabeca_lista)
+{
+    Plista percorre = cabeca_lista;
+    while(percorre != NULL)
+    {
+        printf("%f\n",percorre->info);
+        percorre = percorre->prox;
+    }
 }
