@@ -46,7 +46,7 @@ void * cria_elemento_listahet(int tipo)
         
         case CIR:
         {
-        Circulo * ptr = (Circulo*)malloc(sizeof(Circulo));
+            Circulo * ptr = (Circulo*)malloc(sizeof(Circulo));
             printf("CRIANDO UM CIRCULO:\n");
             printf("DIGITE O RAIO DO CIRCULO: ");
             scanf("%f%*c",&ptr->raio);
