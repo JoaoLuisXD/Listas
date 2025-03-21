@@ -33,40 +33,40 @@ void * cria_elemento_listahet(int tipo)
 {
     switch (tipo)
     {
-    case RET:
-    {
-        Retangulo * ptr = (Retangulo*)malloc(sizeof(Retangulo));
-        printf("CRIANDO UM RETANGULO:\n");
-        printf("DIGITE A BASE DO RETANGULO: ");
-        scanf("%f%*c",&ptr->base);
-        printf("DIGITE A ALTURA DO RETANGULO: ");
-        scanf("%f%*c",&ptr->altura);
-        return (void*)ptr;
-    }
-    
-    case CIR:
-    {
-    Circulo * ptr = (Circulo*)malloc(sizeof(Circulo));
-        printf("CRIANDO UM CIRCULO:\n");
-        printf("DIGITE O RAIO DO CIRCULO: ");
-        scanf("%f%*c",&ptr->raio);
-        return (void*)ptr;
-    }
+        case RET:
+        {
+            Retangulo * ptr = (Retangulo*)malloc(sizeof(Retangulo));
+            printf("CRIANDO UM RETANGULO:\n");
+            printf("DIGITE A BASE DO RETANGULO: ");
+            scanf("%f%*c",&ptr->base);
+            printf("DIGITE A ALTURA DO RETANGULO: ");
+            scanf("%f%*c",&ptr->altura);
+            return (void*)ptr;
+        }
+        
+        case CIR:
+        {
+        Circulo * ptr = (Circulo*)malloc(sizeof(Circulo));
+            printf("CRIANDO UM CIRCULO:\n");
+            printf("DIGITE O RAIO DO CIRCULO: ");
+            scanf("%f%*c",&ptr->raio);
+            return (void*)ptr;
+        }
 
-    case TRI:
-    {
-        Triangulo * ptr = (Triangulo*)malloc(sizeof(Triangulo));
-        printf("CRIANDO UM TRIANGULO:\n");
-        printf("DIGITE A BASE DO TRIANGULO: ");
-        scanf("%f%*c",&ptr->base);
-        printf("DIGITE A ALTURA DO TRIANGULO: ");
-        scanf("%f%*c",&ptr->altura);
-        return (void*)ptr;
-    }
-    
-    default:
-    printf("indefinido\n");
-    return NULL;
+        case TRI:
+        {
+            Triangulo * ptr = (Triangulo*)malloc(sizeof(Triangulo));
+            printf("CRIANDO UM TRIANGULO:\n");
+            printf("DIGITE A BASE DO TRIANGULO: ");
+            scanf("%f%*c",&ptr->base);
+            printf("DIGITE A ALTURA DO TRIANGULO: ");
+            scanf("%f%*c",&ptr->altura);
+            return (void*)ptr;
+        }
+        
+        default:
+        printf("indefinido\n");
+        return NULL;
     }
 }
 Listahet * retira_listahet(Listahet * cabeca_lista, int id);
