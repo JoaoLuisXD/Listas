@@ -5,14 +5,14 @@
 #define CIR 1
 #define TRI 2
 
-#include <stdio.h>
+#include <stdlib.h>
 
 struct listahet
 {
     int id;
     int tipo;
     void * info;
-    struct lista_het * prox;
+    struct listahet * prox;
 };
 typedef struct listahet Listahet;
 
