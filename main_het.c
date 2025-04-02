@@ -15,6 +15,10 @@ int main()
     int n;
     scanf("%d%*c",&n);
     busca_listahet(minha_lista,n);
+    printf("\nretirando o circulo\n");
+    retira_listahet(minha_lista, 2);
+    printf("\n imprimindo novamente a lista: \n");
+    imprime_listahet(minha_lista);
     libera_listahet(minha_lista);
     
 

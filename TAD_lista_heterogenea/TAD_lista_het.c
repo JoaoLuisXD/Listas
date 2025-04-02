@@ -7,6 +7,17 @@ Listahet * cria_listahet()
 {
     return NULL;
 }
+
+/*
+LIBERA LISTAHEt
+parametros:
+cabeca_lista = cabeca da lista.
+p = variável utilizada para percorrer a lista.
+temp = variável temporária usada para auxiliar a liberação da lista, guardando o ponteiro para o proxímo elemento,
+enquanto o anterior é excluído.
+return NULL no final, para ter certeza que não retorne nada.
+*/
+
 Listahet * libera_listahet(Listahet * cabeca_lista)
 {
     Listahet * p = cabeca_lista;
@@ -86,68 +97,110 @@ void* cria_elemento_listahet(int tipo){
 }
 
 
+/*RETIRA LISTAHET
+parametros:
+cabeca_lista = cabeca da lista.
+id = chave primaria que identifica unicamente um objeto da lista.
+p = variável utilizada para percorrer a lista.
+anterior = um elemento anterior à lista, inicialmente valendo NULL.
+*/
+
+
 Listahet * retira_listahet(Listahet * cabeca_lista, int id)
 {
     Listahet * p = cabeca_lista;
     Listahet * anterior = NULL;
-    Listahet * atual = cabeca_lista;
+    // PERCORRENDO A LISTA, VERIFICANDO SE EU ACHEI O ELEMENTO QUE ESTOU PROCURANDO.
     while(p != NULL)
     {
+        // SE ENCONTREI O ID DO ELEMENTO QUE ESTOU PROCURANDO, PARO A EXECUÇÃO DO IF COM UM BREAK.
         if(p->id == id)
         {
             break;
         }
+        // SE NÃO ENCONTREI O ELEMENTO QUE ESTOU PROCURANDO.
+        // O ANTERIOR, QUE ANTES VALIA NULL, AGORA RECEBE P (CABEÇA DA LISTA).
+        // E O P (CABEÇA DA LISTA), RECEBE P->PROX (PROXIMO ELEMENTO DA LISTA).
+        // OU SEJA CASO NÃO ENCONTRE, PASSE PARA O PRÓXIMO ELEMENTO, ATÉ ACHAR O QUE ESTOU PROCURANDO.
         else
         {
             anterior = p;
             p = p->prox;
         }
     }
+    // SE P FOR DIFERENTE DE NULO, A LISTA NÃO É VAZIA.
     if(p != NULL)
     {
-        // ESTA NA CABECA DA LISTA.
+        // SE O ANTERIOR FOR IGUAL A NULL, SIGNIFICA QUE DURANTE O PASSEIO NA LISTA, A CONDIÇÃO PAROU NO PRIMEIRO CASO. OU SEJA, O ELEMENTO QUE ESTOU BUSCANDO, ESTÁ LOGO NA CABECA DA LISTA, POIS DECLARAMOS (ANTERIOR) INICIALMENTE COMO SENDO NULL, E ELE SÓ PASSA A SER DIFERENTE DE NULL, QUANDO NÃO ESTÁ NO INICIO DA LISTA. SABENDO QUE O ELEMENTO QUE ESTOU BUSCANDO ESTÁ NO INICIO, P = P->PROX, PARA GUARDAR LOGO A REFERÊNCIA DO PRÓXIMO ELEMENTO DA LISTA.
         if(anterior == NULL)
         p = p->prox;
 
-        // ESTA NO MEIO OU NO FINAL DA LISTA.
+        // SE O CASO ANTERIOR NÃO ACONTECER SIGNIFICA QUE O ELEMENTO QUE ESTOU BUSCANDO ESTÁ NO MEIO OU NO FIM DA LISTA, NESSE SEGUNDO CASO, FAÇO COM QUE O ANTERIOR->PROX (PRÓXIMO ELEMENTO QUE O ANTERIOR IRÁ APONTAR) SEJA P->PROX(PRÓXIMO ELEMENTO QUE O P VAI APONTAR). ASSIM FAZENDO UM SALTO SOBRE O P(ELEMENTO QUE SERÁ EXCLUÍDO), ASSIM JÁ GUARDANDO A REFERÊNCIA PRO PRÓXIMO ELEMENTO DA LISTA.
         else 
         anterior->prox = p->prox;
     }
     
-    // RETIRANDO O ELEMENTO DA LISTA E RETORNANDO A CABECA DA LISTA NO FINAL.
+    // AGORA RETIRANDO O ELEMENTO DA LISTA, PRIMEIRO LIBERO A INFORMAÇÃO QUE ESTÁ NO ELEMENTO (P->INFO), E DEPOIS LIBERO O ELEMENTO DA LISTA. NO FIM RETORNO A CABEÇA DA LISTA.
     free(p->info);
     free(p);
     return cabeca_lista;
 }
 
-
+/*
+VERIFICA LISTAHET VAZIA
+parametros:
+cabeca_lista = cabeca da lista.
+return: comparando a cabeça da lista com NULL, retorna uma boleana. 1 = true | 0 = false.
+*/
 int verifica_listahet_vazia(Listahet * cabeca_lista)
 {
     return cabeca_lista == NULL;
 }
+
+
+/*
+BUSCA LISTAHET
+parametros:
+cabeca_lista = cabeca da lista.
+id = chave primaria que identifica unicamente um objeto da lista.
+p = variável utilizada para percorrer a lista.
+*/
+
+
 Listahet * busca_listahet(Listahet * cabeca_lista, int id)
 {
     Listahet * p = cabeca_lista;
-    while(p != NULL)
+    while(p != NULL) // PERCORRE A LISTA ENQUANTO NÃO FOR VAZIA.
     {
-        if(p->id == id)
+        // SE O ID DO ELEMENTO DA LISTA FOR IGUAL AO ID QUE ESTOU PROCURANDO, SIGNIFICA QUE ENCONTREI O ELEMENTO.
+        if(p->id == id) 
         {
             printf("ELEMENTO ENCONTRADO\n");
-            return p;
+            return p; // RETORNO O ELEMENTO ENCONTRADO.
         }
-        p = p->prox;
+        p = p->prox; // ENQUANTO PERCORRO A LISTA, VOU PASSANDO A CABECA DA LISTA PARA O PRÓXIMO ELEMENTO DA MESMA.
     }
-    printf("O ELEMENTO NAO ESTA NA LISTA\n");
-    return NULL;
+
+    //SE A CONDIÇÃO ANTERIOR NÃO FOR ATENDIDA, O ELEMENTO NÃO SE ENCONTRA NA LISTA.
+    printf("O ELEMENTO NAO ESTA NA LISTA\n"); 
+
+    return NULL; //RETURN NULL PARA GARANTIR QUE A FUNÇÃO RETORNE NADA.
 }
+
+
+/*IMPRIME LISTAHET
+parametros:
+cabeca_lista = cabeca da lista.
+*/
+
 
 void imprime_listahet(Listahet * cabeca_lista)
 {
-    if(cabeca_lista != NULL)
+    if(cabeca_lista != NULL) //VERIFICA SE A CABECA DA LISTA NÃO É VAZIA.
     {
-        for( ; cabeca_lista != NULL; cabeca_lista = cabeca_lista->prox)
+        while(cabeca_lista != NULL)// CASO NÃO SEJA VAZIA, PERCORRO A LISTA ATÉ QUE NÃO ENCONTRAR MAIS NENHUM ELEMENTO.
         {
-            switch (cabeca_lista->tipo)
+            switch (cabeca_lista->tipo)//DEPENDENDO DO TIPO DA MINHA LISTA, EU EXIBO INFORMAÇÕES DIFERENTES.
             {
                 case RET:
                     Retangulo* ret = (Retangulo*)cabeca_lista->info; 
@@ -172,10 +225,11 @@ void imprime_listahet(Listahet * cabeca_lista)
                     printf("===================\n\n");    
                     break;
             
-                default:
+                default: //CASO NÃO TENHA NENHUM TIPO IGUAL AOS QUE TEM NO SWITCH.
                     printf("tipo nao definido");
                     break;
             }
+            cabeca_lista = cabeca_lista->prox; //ENQUANTO PERCORRO, VOU PASSANDO PARA O PRÓXIMO ELEMENTO DA LISTA.
         }
     }
 }
