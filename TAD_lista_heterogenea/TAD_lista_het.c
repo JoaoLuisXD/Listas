@@ -9,7 +9,7 @@ Listahet * cria_listahet()
 }
 
 /*
-LIBERA LISTAHEt
+LIBERA LISTAHET
 parametros:
 cabeca_lista = cabeca da lista.
 p = variável utilizada para percorrer a lista.
