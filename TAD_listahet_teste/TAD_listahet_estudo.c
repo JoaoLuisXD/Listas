@@ -88,14 +88,18 @@ void * retira_elemento(Listahet * cabeca_lista, int id)
         }
     }
 
-    if(anterior == NULL)
+    if(p != NULL)
     {
-        p = p->prox;
+        if(anterior == NULL)
+        {
+            cabeca_lista = p->prox;
+        }
+        else 
+        {
+            anterior->prox = p->prox;
+        }
     }
-    else 
-    {
-        anterior->prox = p->prox;
-    }
+    
     free(p->info);
     free(p);
     return cabeca_lista;
