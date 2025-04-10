@@ -23,7 +23,7 @@ void *cria_elemento(int tipo){
         scanf("%f%*c",&ptr3->largura);
         return (void*)ptr3;    
     default:
-        printf("te amo");
+        printf("nao definido");
         break;
     }
 }
