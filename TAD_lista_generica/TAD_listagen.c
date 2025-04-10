@@ -31,7 +31,10 @@ Lista * insere_lista(Lista * cabeca_lista, void * info, int(*verifica)(void*, vo
         {
             break;
         }
-        anterior = p;
+        else
+        {
+            anterior = p;
+        }
         p = p->prox;
     }
     if(anterior == NULL && p == NULL)
