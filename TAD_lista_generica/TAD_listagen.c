@@ -27,7 +27,7 @@ Lista * insere_lista(Lista * cabeca_lista, void * info, int(*verifica)(void*, vo
 
     while (p != NULL)
     {
-        if(verifica(novo->info,info))
+        if(verifica(p->info,info))
         {
             break;
         }
