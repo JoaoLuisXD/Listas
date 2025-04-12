@@ -36,7 +36,7 @@ typedef struct listaimg Listaimg;
 
 struct listaalu
 {
-    char* nome[100];
+    char nome[100];
     int idade;
 };
 typedef struct listaalu Listaalu;
@@ -45,7 +45,7 @@ Listagen * cria_lista();
 void *cria_elemento(int tipo);
 Listagen * insere(Listagen * cabeca_lista, int tipo, int id, void * info);
 Listagen * retira(Listagen * cabeca_lista, void * info);
-Listagen * libera(Listagen * cabeca_lista, void * info);
+Listagen * libera(Listagen * cabeca_lista);
 void imprime(Listagen * cabeca_lista, int tipo);
 
 

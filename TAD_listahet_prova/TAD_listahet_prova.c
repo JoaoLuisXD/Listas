@@ -9,12 +9,12 @@ void *cria_elemento(int tipo){
     {
     case 1:
         Listatel * ptr1 = (Listatel*)malloc(sizeof(Listatel));
-        scanf("%s%*c",&ptr1->nome);
+        scanf("%s%*c",ptr1->nome);
         scanf("%d%*c",&ptr1->num);
         return (void*)ptr1;
     case 2:
         Listaalu * ptr2 = (Listaalu*)malloc(sizeof(Listaalu));
-        scanf("%s%*c",&ptr2->nome);
+        scanf("%s%*c",ptr2->nome);
         scanf("%d%*c",&ptr2->idade);
         return (void*)ptr2;
     case 3:
@@ -58,7 +58,7 @@ Listagen * retira(Listagen * cabeca_lista, void * info){
     }
     if(anterior == NULL)
     {
-        p = p->prox;
+        cabeca_lista = p->prox;
     }
     else
     {
@@ -70,7 +70,7 @@ return cabeca_lista;
     
 }
 
-Listagen* libera(Listagen* cabeca_lista, void* info){
+Listagen* libera(Listagen* cabeca_lista){
     Listagen* p = cabeca_lista;
     if(cabeca_lista!=NULL){
         while (p!=NULL)

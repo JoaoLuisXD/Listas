@@ -57,6 +57,7 @@
   "C_Cpp_Runner.useLinkTimeOptimization": false,
   "C_Cpp_Runner.msvcSecureNoWarnings": false,
   "files.associations": {
-    "nova_lista": "cpp"
+    "nova_lista": "cpp",
+    "TAD_INTEIRO.C": "cpp"
   }
 }
