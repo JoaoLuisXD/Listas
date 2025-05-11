@@ -19,7 +19,10 @@
     Lista * retira_lista(Lista * cabeca_lista, void * info, int(*verifica)(void*, void*));
     Lista * busca_elemento(Lista * cabeca_lista, void * info, int(*verifica)(void*,void*));
     void imprime_lista(Lista * cabeca_lista, void(*imprime)(void*));
+    void * resgatar(FILE * fp, Lista *cabeca_lista,void*(*ler_linha)(char*));
+    Lista * gravar_na_lista(FILE * fp, Lista *cabeca_lista, void*(*escrever_na_linha)(void*));
     
+
     
 
 
