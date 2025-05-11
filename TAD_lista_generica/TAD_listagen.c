@@ -141,3 +141,4 @@ Lista * gravar_na_lista(FILE * fp, Lista *cabeca_lista, void*(*escrever_na_linha
     return p;
 }
 
+//teste

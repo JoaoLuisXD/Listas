@@ -21,6 +21,7 @@
     void imprime_lista(Lista * cabeca_lista, void(*imprime)(void*));
     void * resgatar(FILE * fp, Lista *cabeca_lista,void*(*ler_linha)(char*));
     Lista * gravar_na_lista(FILE * fp, Lista *cabeca_lista, void*(*escrever_na_linha)(void*));
+    //teste
     
 
     
